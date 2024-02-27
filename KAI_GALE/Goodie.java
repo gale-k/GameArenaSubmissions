@@ -1,39 +1,36 @@
 public class Goodie {
-    private double xPosition;
-    private double yPosition;
+    private Rectangle[] rectangles;
+    //private Rectangle hitbox;
+
+    // public Rectangle getHitbox() {
+    //     return hitbox;
+    // }
     
-    private Ball Head = new Ball(250, 150, 50, "WHITE");
-    private Rectangle Body = new Rectangle(230,173,40,100,"WHITE");
-    private Line RArm = new Line(271,190,296,260,5,"WHITE",1);
-    private Line LArm = new Line(230,190,205,260,5,"WHITE",1);
-    private Line RLeg = new Line(259,275,266,345,5,"WHITE",1);
-    private Line LLeg = new Line(242,275,235,345,5,"WHITE",1);
-
-    public Goodie(double x, double y, double w, double h, String col) {
-        this.xPosition = x;
-		this.yPosition = y;
-		//this.width = w;
-		//this.height = h;
-		this.colour = col;
-		this.layer = 0;
-
-        // Ball Head = new Ball(250, 150, 50, "WHITE");
-        // Rectangle Body = new Rectangle(230,173,40,100,"WHITE");
-        // Line RArm = new Line(271,190,296,260,5,"WHITE",1);
-        // Line LArm = new Line(230,190,205,260,5,"WHITE",1);
-        // Line RLeg = new Line(259,275,266,345,5,"WHITE",1);
-        // Line LLeg = new Line(242,275,235,345,5,"WHITE",1);
-            
-        // arena.addBall(Head);
-        // arena.addRectangle(Body);
-        // arena.addLine(RArm);
-        // arena.addLine(LArm);
-        // arena.addLine(RLeg);
-        // arena.addLine(LLeg);
+    public void render(GameArena arena) {
+        for (int i = 0; i < rectangles.length; i++) {
+            arena.addRectangle(rectangles[i]);
+        }
+        //arena.addRectangle(hitbox);
     }
 
-    public int getLayer()
-	{
-		return 1;
-	}
+    public void remove(GameArena arena) {
+        for (int i = 0; i < rectangles.length; i++) {
+            arena.removeRectangle(rectangles[i]);
+        }
+        //arena.removeRectangle(hitbox);
+    }
+    public Goodie(double x, double y, GameArena arena, int size) {
+        rectangles = new Rectangle[7]; 
+        rectangles[0] = new Rectangle(x, y, size, size, "WHITE");
+        rectangles[1] = new Rectangle(x+size*2, y, size, size, "WHITE");
+        rectangles[2] = new Rectangle(x-size, y+size*2, size, size, "WHITE");
+        rectangles[3] = new Rectangle(x, y+size*3, size, size, "WHITE");
+        rectangles[4] = new Rectangle(x+size, y+size*3, size, size, "WHITE");
+        rectangles[5] = new Rectangle(x+size*2, y+size*3, size, size, "WHITE");
+        rectangles[6] = new Rectangle(x+size*3, y+size*2, size, size, "WHITE");
+
+        //hitbox = new Rectangle(x, y, size * 21, size * 20, "BLACK", -10);
+
+        render(arena);
+    }
 }

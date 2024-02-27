@@ -357,8 +357,8 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 					if (obj instanceof Text)
 						l = ((Text)obj).getLayer();
 
-					if (obj instanceof Goodie)
-						l = ((Goodie)obj).getLayer();
+					// if (obj instanceof Goodie)
+					// 	l = ((Goodie)obj).getLayer();
 
 					if (layer < l)
 					{
@@ -421,9 +421,9 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 		this.addThing(l, l.getLayer());
 	}
 
-	public void addGoodie(Goodie g) {
-		this.addThing(g, g.getLayer());
-	}
+	// public void addGoodie(Goodie g) {
+	// 	this.addThing(g, g.getLayer());
+	// }
 
 	/**
 	 * Adds a given Text object to the GameArena.
